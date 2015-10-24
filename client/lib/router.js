@@ -5,7 +5,7 @@ Router.configure({
 
 Router.map( function () {
 
-	// homepage
+	// Homepage
 	this.route('home', {
 		path: '/',
 		template: 'home',
@@ -19,6 +19,7 @@ Router.map( function () {
 		}
 	});
 	
+	// Dashboard
 	this.route('dash', {
 		path: '/dash',
 		template: 'dashboard',
@@ -28,6 +29,21 @@ Router.map( function () {
 			} else {
 				this.next();
 			}
+		},
+		yieldRegions: { 
+			'courseNav': {to: 'nav'}
+		}
+	});
+
+	// Class page
+	this.route('course', {
+		path: '/course/:courseId',
+		template: 'course',
+		data: function () {
+			return { 'courseId' : this.params.courseId };
+		},
+		yieldRegions: { 
+			'formNav': {to: 'nav'}
 		}
 	});
 });

@@ -1,6 +1,13 @@
 <template name="main-layout">
 
-    <!--Header-->
+    {{> header}}
+
+    {{> yield}}
+
+</template>
+
+<template name="header">
+
     <header>
         <nav class="navbar navbar-inverse navbar-fixed nav-embellished" role="navigation">
 
@@ -10,22 +17,122 @@
                     <span class="sr-only">Toggle navigation</span>
                 </button>
 
-                <a class="navbar-brand">arpegg.io</a>
-
+                <a class="navbar-brand" href="/">arpegg.io</a>
+                
+                <ul class="nav navbar-nav">
+                    
+                    <li><h5 class="edition">{{#if isStudent}}Student{{else}}Teacher{{/if}} Edition</h5></li>
+                </ul>
             </div>
 
             <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-01">
 
                 <ul class="nav navbar-nav">
+
+
+                    {{> yield "nav"}}
+
+
                     <li><a class="logout-btn" href="#">Logout</a></li>
                 </ul>
 
             </div><!-- /.navbar-collapse -->
 
         </nav><!-- /navbar -->
+        
+
+        {{> classModal }}
+        <!--{{> assignmentModal }}-->
+        {{> formModal }}
+        
     </header>
 
+</template>
 
-    {{> yield}}
+<template name="courseNav">
+    {{#if isStudent}}
+        <li><a class="add-class-btn" data-toggle="modal" data-target="#modal-create-course" href="#">Add Course</a></li>
+    {{else}}
+        <li><a class="add-class-btn" data-toggle="modal" data-target="#modal-create-course" href="#">New Course</a></li>
+    {{/if}}
+</template>
+
+<template name="formNav">
+    {{#if isTeacher}}
+        <li><a class="add-class-btn" data-toggle="modal" data-target="#modal-create-form" href="#">New Form</a></li>
+    {{/if}}
+</template>
+
+<template name="classModal">
+
+    <div id="modal-create-course" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn btn-default close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{#if isStudent}}Join{{else}}Create{{/if}} Course</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="input-group">
+                        
+                        {{#if isStudent}}
+
+                            <span class="input-group-addon" id="basic-addon1">Course Code:</span>
+                            <input id="course-code-input" type="text" class="form-control" placeholder="ex: 5auYko9NyY3AxcFu3" aria-describedby="basic-addon1">
+                            
+                        {{else}}
+                        
+                            <span class="input-group-addon" id="basic-addon2">Course Name:</span>
+                            <input type="text" class="course-name-input form-control" placeholder="ex: English Honors" aria-describedby="basic-addon2">
+                            
+                            <span class="input-group-addon" id="basic-addon3">Period:</span>
+                            <input type="text" class="course-period-input form-control" placeholder="ex: 7" aria-describedby="basic-addon3">
+                            
+                        {{/if}}
+                            
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Close</a>
+                    <a class="btn btn-primary btn-join" id="modal-create">{{#if isStudent}}Join{{else}}Create{{/if}}</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</template>
+
+<template name="formModal">
+    
+    <div id="modal-create-form" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn btn-default close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create Feedback Form</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="input-group">
+                        hELLO WORSDLFSDFASD
+                        {{#each components}}
+                            {{label}}
+                            <!--...-->
+                        {{/each}}
+                        <!--{{> quickForm id="types1" schema=}}-->
+                        
+                        <!--{{> quickForm}}-->
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Close</a>
+                    <a class="btn btn-primary btn-join">Create</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 </template>

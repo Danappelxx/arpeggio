@@ -1,1 +1,4 @@
-// Meteor.method definitions
+// Meteor.methods definitions
+Meteor.methods({
+    
+});

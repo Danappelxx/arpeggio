@@ -19,17 +19,31 @@
   }
 
   .class-block {
-
+  
+      .class-text {
+        padding: 5px;
+      }
+      &:hover {
+        background-color: #ECF0F1;
+      }
       padding: 10px;
-      border: 1px grey solid;
+      border: 1px #9E9E9E solid;
       border-radius: 5px;
+      margin-bottom: 5px;
       .class-name {
           font-size: 20px;
+          a:hover {
+            text-decoration: underline;
+          }
       }
-  
+      
       .class-period {
           font-size: 16px;
       }
+      .class-splotch {
+          
+      }
+      
       text-align: left;
   }
 

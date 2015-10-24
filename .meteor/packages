@@ -31,3 +31,5 @@ useraccounts:bootstrap
 twbs:bootstrap
 aldeed:autoform
 d3js:d3
+insecure
+autopublish

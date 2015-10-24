@@ -1,11 +1,6 @@
 Template.dashboard.helpers({
-    classes: () => {
-        // use Mongo.Collection later, once we have it setup
-        return [
-            {
-                "name" : "World Lit Honors",
-                "period" : "Period 1"
-            }
-        ]
+    classes: function () {
+        var courses = Course.find({ _id : { $in : (Meteor.user().courses || [] ) } }).fetch();
+        return courses;
     }
-})
+});

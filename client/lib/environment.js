@@ -73,12 +73,14 @@ AccountsTemplates.addFields([
     {
         _id: 'firstName',
         type: 'text',
+        displayName: 'First name',
         placeholder: 'First name',
         required: true,
     },
     {
         _id: 'lastName',
         type: 'text',
+        displayName: 'Last name',
         placeholder: 'Last name',
         required: true,
     },
