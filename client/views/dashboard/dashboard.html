@@ -1,0 +1,25 @@
+<template name="dashboard">
+    
+    <div id="dashboard-container">
+        <div id="classes" class="col-md-5 col-sm-5">
+            <h5 class="uppercase" id="class-separator-title">Classes</h5>
+            {{#each classes}}
+            
+                {{> classPanel}}
+                
+            {{/each}}
+        </div>
+    </div>
+    
+</template>
+
+<template name="classPanel">
+
+    <a>
+    <div class="class-block">
+        <h4 class="class-name"><a href="#">{{name}}</a></h4>
+        <h5 class="class-period uppercase">{{period}} - {{teacher}}</h5>
+    </div>
+    </a>
+    
+</template>

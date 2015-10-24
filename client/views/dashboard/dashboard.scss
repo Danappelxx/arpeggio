@@ -1,0 +1,70 @@
+// dashboard styles
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+#dashboard-container
+{
+  #class-separator-title {
+    font-size: 20px;
+  }
+  #classes {
+    margin-left: 10px;
+  }
+  overflow-x: hidden;
+  width: 100%;
+  h2 {
+    padding-bottom: 50px;
+  }
+
+  .class-block {
+
+      padding: 10px;
+      border: 1px grey solid;
+      border-radius: 5px;
+      .class-name {
+          font-size: 20px;
+      }
+  
+      .class-period {
+          font-size: 16px;
+      }
+      text-align: left;
+  }
+
+  /*.row {
+
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-content: flex-start;
+    align-content: flex-start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+
+  	.flex-item-faq {
+      -webkit-flex-grow: 0;
+      flex-grow: 0;
+      -webkit-flex-shrink: 0;
+      flex-shrink: 0;
+
+      max-width: 300px;
+
+      margin: 15px;
+      .panel {
+      	height: 255px;
+      }
+
+      .panel-body {
+        font-size: @font-size-base;
+      }
+  	}
+
+  }*/
+}

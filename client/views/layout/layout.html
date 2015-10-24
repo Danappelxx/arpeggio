@@ -1,14 +1,31 @@
 <template name="main-layout">
-    
+
     <!--Header-->
-    <header></header>
-    
-    <!--Test-->
-    <h1>Test!</h1>
-    
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed nav-embellished" role="navigation">
+
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+
+                <a class="navbar-brand">arpegg.io</a>
+
+            </div>
+
+            <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-01">
+
+                <ul class="nav navbar-nav">
+                    <li><a class="logout-btn" href="#">Logout</a></li>
+                </ul>
+
+            </div><!-- /.navbar-collapse -->
+
+        </nav><!-- /navbar -->
+    </header>
+
+
     {{> yield}}
 
-    <!--Footer-->
-    <footer></footer>
-    
 </template>

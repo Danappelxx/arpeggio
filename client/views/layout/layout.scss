@@ -1,6 +1,13 @@
 body {
+    overflow-x: hidden;
+    font-family: 'Raleway', sans serif;
     header {
-        background-color: black;
+        nav {
+            border-radius: 0;
+        }
+        background-color: #34495E;
+        border-radius: 0;
+        width: 100%;
     }
     
     footer {
