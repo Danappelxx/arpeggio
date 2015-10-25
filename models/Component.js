@@ -1,8 +1,8 @@
 /* globals Component SimpleSchema */
 Component = new Mongo.Collection("component");
 
-Component.attachSchema(new SimpleSchema({
-    inputType: {
+    Component.attachSchema(new SimpleSchema({
+        inputType: {
         type: Number,
         label: "Input Type"
     },
@@ -15,7 +15,7 @@ Component.attachSchema(new SimpleSchema({
         label: "Graph Type"
     },
     data: {
-        type: [Object],
+        type: [String],
         label: "Component Data",
         optional: true
     },
@@ -32,7 +32,7 @@ Component.Key = {
     InputType: {
         checkbox: 0,
         range: 1,
-        radio: 2,
+        dropdown: 2,
         text: 3,
         number: 4
     },
@@ -48,10 +48,12 @@ Component.Key = {
 
 ComponentConverter = class ComponentConverter {
 
-    constructor(inputType, label, data) {
+    constructor(inputType, label, data = []) {
         this.inputType = inputType;
         this.label = label;
-        this.data = data;
+        this.data = data.map((e) => {
+            return JSON.parse(e);
+        });
 
 
         // reference: http://autoform.meteor.com/types
@@ -67,7 +69,7 @@ ComponentConverter = class ComponentConverter {
                 break;
 
             case Component.Key.InputType.checkbox:
-            case Component.Key.InputType.radio:
+            case Component.Key.InputType.dropdown:
                 this.autoform = {
                     type: this.convertInputType(),
                     options: () => {
@@ -84,7 +86,7 @@ ComponentConverter = class ComponentConverter {
             case Component.Key.InputType.number: return 'number';
             case Component.Key.InputType.text: return 'text';
             case Component.Key.InputType.checkbox: return 'select-checkbox';
-            case Component.Key.InputType.radio: return 'select-radio';
+            case Component.Key.InputType.dropdown: return 'select';
         }
     }
 };

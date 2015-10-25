@@ -19,45 +19,48 @@ Meteor.startup(function () {
         // How did you feel about the amount of homework?
         Component.insert({
             _id: id2,
-            inputType: Component.Key.InputType.radio,
+            inputType: Component.Key.InputType.dropdown,
             label: "How did you feel about the amount of homework?",
             graphType: Component.Key.GraphType.pie,
             data: [
-                {
+                JSON.stringify({
                     "label": "Too little",
                     "value": 0
-                },
-                {
+                }),
+                JSON.stringify({
                     "label": "Just right",
                     "value": 5
-                },
-                {
+                }),
+                JSON.stringify({
                     "label": "Too much",
                     "value": 10
-                }
+                })
             ]
         });
+
+        console.log(Component.findOne({_id: id2}));
     }
 
     if (! Component.findOne(id3)) {
         // On a scale of 1-10, how hard was the homework?
         Component.insert({
             _id: id3,
-            inputType: Component.Key.InputType.radio,
+            inputType: Component.Key.InputType.dropdown,
             label: "How hard was the homework?",
             graphType: Component.Key.GraphType.histogram,
             data: [
-                {
+                JSON.stringify({
                     "label": "Too easy",
                     "value": 0
-                },
-                {
+                }),
+                JSON.stringify({
                     "label": "Just right",
                     "value": 5
-                },
-                {
-                    "label": "Too difficult", "value": 10
-                }
+                }),
+                JSON.stringify({
+                    "label": "Too difficult",
+                    "value": 10
+                })
             ]
         });
     }
