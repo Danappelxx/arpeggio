@@ -14,12 +14,12 @@ Response.attachSchema(new SimpleSchema({
 ChartData = class ChartData {
     constructor(component, responses) {
         this.component = component;
-        this.responses = this.proccessResponses();
+        this.responses = this.proccessResponses(responses);
     }
 
-    proccessResponses() {
+    proccessResponses(responses) {
         // work through them
-        return this.responses
+        return responses;
     }
 }
 
@@ -29,13 +29,24 @@ ResponseProcessor = class ResponseProcessor {
         var form = Form.findOne(formId);
         var componentIds = form.components;
 
+        console.log(form);
+
         var chartDatas = componentIds.map ( (componentId) => {
-            var component = Component.findOne({ _id : Components });
+            var component = Component.findOne({ _id : componentId });
+            console.log(component);
+            component.data = (component.data || []).map ( (data) => {
+                return JSON.parse(data);
+            });
+            console.log(component);
+            console.log(component.data);
+
             var responses = Response.find({ componentId : componentId }).fetch();
+            console.log(responses);
 
             return new ChartData(component, responses);
         });
 
+        console.log(chartDatas);
         this.chartDatas = chartDatas;
     }
 }
