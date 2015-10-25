@@ -116,19 +116,19 @@
                 <div class="modal-body">
 
                     <div class="input-group">
-
-                        <!-- {{#each components}} -->
-                            {{> includeComponent}}
-                        <!-- {{/each}} -->
-                        <!--{{> quickForm id="types1" schema=}}-->
-
-                        <!--{{> quickForm}}-->
+                        <div class="todo">
+                            <ul>
+                              {{#each templateComponents}}
+                                {{> componentTemplate}}
+                              {{/each}}
+                            </ul>
+                        </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-default" data-dismiss="modal">Close</a>
-                    <a class="btn btn-primary btn-join">Create</a>
+                    <a class="btn btn-primary btn-join create-form-btn">Create</a>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -136,32 +136,12 @@
 
 </template>
 
-<template name="includeComponent">
-    <div class="todo">
-        <ul>
-          <li class="todo-done">
-            <div class="todo-content">
-              <h4 class="todo-name">
-                Meet <strong>Adrian</strong> at <strong>6pm</strong>
-              </h4>
-            </div>
-          </li>
-          <li>
-            <div class="todo-icon fui-list"></div>
-            <div class="todo-content">
-              <h4 class="todo-name">
-                Chat with <strong>V.Kudinov</strong>
-              </h4>
-            </div>
-          </li>
-          <li>
-            <div class="todo-icon fui-eye"></div>
-            <div class="todo-content">
-              <h4 class="todo-name">
-                Watch <strong>Iron Man</strong>
-              </h4>
-            </div>
-          </li>
-        </ul>
+<template name="componentTemplate">
+    <li data-id="{{_id}}" class="component-checkbox">
+      <div class="todo-content">
+        <h4 class="todo-name">
+          {{label}}
+        </h4>
       </div>
+    </li>
 </template>

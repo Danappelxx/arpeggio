@@ -1,53 +1,84 @@
 Meteor.startup(function () {
 
-    var components = Component.find({}).fetch();
-    for (var i = 0; i < components.length; i++) {
-        if (components[i].form == null) {
-            Component.remove( { _id : components[i]._id } );
-        }
+    // don't change!
+    var id1 = "P864bYXSu3koMLASp";
+    var id2 = "j2uH9hKyEXH9qwgWf";
+    var id3 = "EwgBAoQr6kohqttq8";
+
+    if (! Component.findOne(id1)) {
+        // How many minutes did the homework take you?
+        Component.insert({
+            _id: id1,
+            inputType: Component.Key.InputType.text,
+            label: "How many minutes did the homework take you?",
+            graphType: Component.Key.GraphType.histogram
+        });
     }
 
-    // How many minutes did the homework take you?
-    Component.insert({
-        inputType: Component.Key.InputType.text,
-        label: "How many minutes did the homework take you?",
-        graphType: Component.Key.GraphType.histogram
-    });
+    if (! Component.findOne(id2)) {
+        // How did you feel about the amount of homework?
+        Component.insert({
+            _id: id2,
+            inputType: Component.Key.InputType.radio,
+            label: "How did you feel about the amount of homework?",
+            graphType: Component.Key.GraphType.pie,
+            data: [
+                {
+                    "label": "Too little",
+                    "value": 0
+                },
+                {
+                    "label": "Just right",
+                    "value": 5
+                },
+                {
+                    "label": "Too much",
+                    "value": 10
+                }
+            ]
+        });
+    }
 
-    // How did you feel about the amount of homework?
-    Component.insert({
-        inputType: Component.Key.InputType.radio,
-        label: "How did you feel about the amount of homework?",
-        graphType: Component.Key.GraphType.pie,
-        data: [
-                {"label": "Too little", "value": 0},
-                {"label": "Just right", "value": 5},
-                {"label": "Too much", "value": 10}
-        ]
-        // form: null // global
-    }, function(err, result) {
-        console.log(err);
-        console.log(result);
-    });
-
-    // On a scale of 1-10, how hard was the homework?
-    Component.insert({
-        inputType: Component.Key.InputType.radio,
-        label: "How hard was the homework?",
-        graphType: Component.Key.GraphType.histogram,
-        data: [
-                {label: "Too easy", value: 0},
-                {label: "Just right", value: 5},
-                {label: "Too difficult", value: 10}
-        ]
-    });
+    if (! Component.findOne(id3)) {
+        // On a scale of 1-10, how hard was the homework?
+        Component.insert({
+            _id: id3,
+            inputType: Component.Key.InputType.radio,
+            label: "How hard was the homework?",
+            graphType: Component.Key.GraphType.histogram,
+            data: [
+                {
+                    "label": "Too easy",
+                    "value": 0
+                },
+                {
+                    "label": "Just right",
+                    "value": 5
+                },
+                {
+                    "label": "Too difficult", "value": 10
+                }
+            ]
+        });
+    }
 });
 
 Template['main-layout'].helpers({
     'components': function () {
         var components = Component.find({}).fetch();
-        console.log(components);
         return components;
+    }
+});
+
+Template.formModal.helpers({
+    'templateComponents': function() {
+        var components = Component.find({}).fetch();
+        var temp = components.filter( (el) => {
+            return !el.form;
+        });
+
+        console.log(temp);
+        return temp;
     }
 });
 
@@ -83,10 +114,48 @@ Template['main-layout'].events({
 
         $('.add-course-btn').blur();
     },
-    'click .add-form-btn': function (e) {
+    'click .component-checkbox': function(e) {
         e.preventDefault();
 
-        // Handle crete form
+        if ($(e.target).hasClass('todo-done')) {
+            $(e.target).removeClass('todo-done');
+        } else {
+            $(e.target).addClass('todo-done');
+        }
+    },
+    'click .create-form-btn': function(e) {
+        e.preventDefault();
+
+
+        console.log(Router.current().params.courseId);
+        var courseId = Router.current().params.courseId;
+
+        var rawComponentIds = [];
+        var checked = $('.component-checkbox.todo-done');
+        for (let i = 0; i < checked.length; i++) {
+            var id = checked.eq(i).data('id');
+            rawComponentIds.push(id);
+        }
+
+        // $('.component-checkbox').map ( function (i,el) {console.log(el.getAttribute('data-id'))});
+
+        var formId = Random.id();
+        console.log(rawComponentIds);
+        var componentIds = rawComponentIds
+            .map( (el) => {
+                var base = Component.findOne(el);
+                console.log(base);
+                base._id = null;
+                base.form = formId;
+                return Component.insert(base);
+            });
+
+        Form.insert({
+            _id: formId,
+            name: "Test",
+            course: courseId,
+            components: rawComponentIds
+        });
     }
 });
 

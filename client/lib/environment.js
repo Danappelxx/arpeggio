@@ -51,7 +51,7 @@ AccountsTemplates.configure({
         }
     },
     preSignUpHook: () => {
-        
+
     },
 
     // Texts
