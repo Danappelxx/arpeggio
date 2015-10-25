@@ -7,7 +7,7 @@ Template.course.helpers({
         return profile.firstName + " " + profile.lastName;
     },
     forms: function () {
-        return Form.find({course : this.courseId}).fetch();
+        return Form.find({course : this.courseId}).fetch().reverse();
     },
     courseId: function() {
         return this.courseId;
