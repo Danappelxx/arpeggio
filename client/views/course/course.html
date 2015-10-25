@@ -1,15 +1,16 @@
 <template name="course">
 
     <div id="course-container">
+
         <h1 id="course-name">{{name}}</h1>
         <p id="course-teacher">{{teacher}}</p>
+
         <p>Course Code: {{courseId}}</p>
+
         <div id="forms-container">
             <ul>
                 {{#each forms}}
-                    <li>
-                        {{> form}}
-                    </li>
+                    {{> form}}
                 {{/each}}
             </ul>
         </div>
@@ -20,10 +21,14 @@
 
 <template name="form">
 
-    <div class="form-container">
+    {{#unless schemaIsEmpty schema}}
+        <li>
+            <div class="form-container">
 
-        {{> quickForm id="componentForm" schema=schema}}
+                {{> quickForm id="componentForm" schema=schema}}
 
-    </div>
+            </div>
+        </li>
+    {{/unless}}
 
 </template>

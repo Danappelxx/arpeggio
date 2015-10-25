@@ -30,14 +30,18 @@ Template.form.helpers({
                     optional: true,
                     autoform: componentConverter.autoform,
                     label: el.label
-                }
+                };
             })
             .reduce((prev, curr) => {
                 prev[curr.label] = curr;
                 return prev;
             }, {});
 
-        return new SimpleSchema(schemas);
+        var schema = new SimpleSchema(schemas);
 
+        return schema;
+    },
+    schemaIsEmpty: function (schema) {
+        return schema._schemaKeys.length === 0;
     }
 });
