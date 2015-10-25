@@ -1,7 +1,7 @@
 // // meteor publish definitions
-// Meteor.publish('course', function () {
-// 	return Course.find();
-// });
+Meteor.publish('form', function () {
+	return Form.find();
+});
 
 // UNSAFE! (who cares)
 Meteor.publish('users', function() {

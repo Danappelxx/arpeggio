@@ -29,24 +29,24 @@ ResponseProcessor = class ResponseProcessor {
         var form = Form.findOne(formId);
         var componentIds = form.components;
 
-        console.log(form);
+        // console.log(form);
 
         var chartDatas = componentIds.map ( (componentId) => {
             var component = Component.findOne({ _id : componentId });
-            console.log(component);
+            // console.log(component);
             component.data = (component.data || []).map ( (data) => {
                 return JSON.parse(data);
             });
-            console.log(component);
-            console.log(component.data);
+            // console.log(component);
+            // console.log(component.data);
 
             var responses = Response.find({ componentId : componentId }).fetch();
-            console.log(responses);
+            // console.log(responses);
 
             return new ChartData(component, responses);
         });
 
-        console.log(chartDatas);
+        // console.log(chartDatas);
         this.chartDatas = chartDatas;
     }
 }

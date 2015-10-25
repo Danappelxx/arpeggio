@@ -46,5 +46,20 @@ Router.map( function () {
 			'formNav': {to: 'nav'}
 		}
 	});
+
+
+	this.route('charts', {
+		path: '/charts',
+		template: 'charts',
+
+		waitOn: function () {
+			return Meteor.subscribe('form');
+		}
+		// data: function () {
+		// 	return {
+		// 		// form id
+		// 	}
+		// }
+	})
 });
 
