@@ -53,7 +53,6 @@ Template['main-layout'].helpers({
 
 Template['main-layout'].events({
     'click .logout-btn': function(e) {
-        e.preventDefault();
         AccountsTemplates.logout();
     },
     'click .add-course-btn': function(e) {
