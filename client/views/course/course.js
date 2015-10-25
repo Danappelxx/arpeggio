@@ -49,14 +49,22 @@ Template.form.helpers({
 AutoForm.hooks({
     componentForm: {
         onSubmit: function(insertDoc, updateDoc, currentDoc) {
+            var formId = "";
+
             Object.keys(insertDoc).forEach(function(key){
-                let id = Component.findOne({label: key})._id;
+                var component = Component.findOne({label: key, _id : { $nin : window.globalIds } });
+
+                var id = component._id;
                 Response.insert({
                     componentId: id,
                     data: insertDoc[key]
                 });
+
+                formId = component.form;
             });
-            Session.set('chartDatas', new ResponseProcessor("AAxj8kqqomLJsqqAz").chartDatas);
+
+            Session.set('chartDatas', new ResponseProcessor(formId).chartDatas);
+
             this.done();
             return false;
         }

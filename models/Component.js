@@ -1,8 +1,8 @@
 /* globals Component SimpleSchema */
 Component = new Mongo.Collection("component");
 
-    Component.attachSchema(new SimpleSchema({
-        inputType: {
+Component.attachSchema(new SimpleSchema({
+    inputType: {
         type: Number,
         label: "Input Type"
     },

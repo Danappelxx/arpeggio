@@ -1,11 +1,17 @@
 Template.piechart.rendered = function () {
 	// var chartDatas = new ResponseProcessor("AAxj8kqqomLJsqqAz").chartDatas;
-	Session.set('chartDatas', new ResponseProcessor("AAxj8kqqomLJsqqAz").chartDatas);
+	var formId = this.find('.piechart').attributes['data-formid'].value;
+
+	Session.set('chartDatas', new ResponseProcessor(formId).chartDatas);
 	// console.log(chartDatas);
 	var chartDatas = Session.get('chartDatas');
-	// get the responses 
+	// get the responses
 	// Session.set('chartData', Session.get('chartDatas')[0]);
-	var chartData = chartDatas[0];
+	console.log('BEGIN');
+	var chartData = chartDatas.filter( (chartData) => {
+		return chartData.component.graphType == Component.Key.GraphType.pie;
+	});
+	chartData = chartData[0]; // lol
 
 	var component = chartData.component;
 	// Session.set('component', Session.get('chartData').component);

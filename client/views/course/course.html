@@ -8,13 +8,12 @@
         <div id="forms-container" class="col-md-12 col-sm-12">
             <h5 class="uppercase" id="section-separator">Feedback Forms</h5>
             <ul>
+
                 {{#each forms}}
                     {{> form}}
                 {{/each}}
             </ul>
         </div>
-
-        {{> piechart}}
 
     </div>
 
@@ -26,10 +25,12 @@
         <li>
             <div class="form-container">
                 <h4>{{name}}</h4>
-                {{#if isTeacher}}
+                <!-- {{#if isTeacher}}
                     <a id="statistics-btn" href="/charts/{{_id}}"><i class="fa fa-line-chart"></i> See Statistics</a>
-                {{/if}}
+                {{/if}} -->
                 {{> quickForm id="componentForm" schema=schema}}
+
+                {{> piechart formId=_id}}
 
             </div>
         </li>

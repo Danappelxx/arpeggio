@@ -5,6 +5,8 @@ Meteor.startup(function () {
     var id2 = "j2uH9hKyEXH9qwgWf";
     var id3 = "EwgBAoQr6kohqttq8";
 
+    window.globalIds = [id1,id2,id3];
+
     if (! Component.findOne(id1)) {
         // How many minutes did the homework take you?
         Component.insert({
@@ -47,7 +49,7 @@ Meteor.startup(function () {
             _id: id3,
             inputType: Component.Key.InputType.dropdown,
             label: "How hard was the homework?",
-            graphType: Component.Key.GraphType.histogram,
+            graphType: Component.Key.GraphType.pie,
             data: [
                 JSON.stringify({
                     "label": "Too easy",
@@ -158,7 +160,7 @@ Template['main-layout'].events({
             _id: formId,
             name: $('.form-name-input').val(),
             course: courseId,
-            components: rawComponentIds
+            components: componentIds
         });
         $(".btn-close").click();
         setTimeout(function(){$(".add-form-btn").blur()}, 1500);
