@@ -46,21 +46,24 @@ Router.map( function () {
 		},
 		yieldRegions: { 
 			'formNav': {to: 'nav'}
+		},
+		waitOn: function () {
+			return Meteor.subscribe('form');
 		}
 	});
 
+	// this.route('charts', {
+	// 	path: '/charts',
+	// 	template: 'charts',
 
-	this.route('charts', {
-		path: '/charts/:formId',
-		template: 'charts',
-
-		waitOn: function () {
-			return Meteor.subscribe('form');
-		},
-		data: function () {
-			// console.log(this.params.formId);
-			return { 'formId' : this.params.formId };
-		}
-	})
+	// 	waitOn: function () {
+	// 		return Meteor.subscribe('form');
+	// 	}
+	// 	// data: function () {
+	// 	// 	return {
+	// 	// 		// form id
+	// 	// 	}
+	// 	// }
+	// })
 });
 

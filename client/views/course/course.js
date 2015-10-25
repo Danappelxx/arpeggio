@@ -56,6 +56,7 @@ AutoForm.hooks({
                     data: insertDoc[key]
                 });
             });
+            Session.set('chartDatas', new ResponseProcessor("AAxj8kqqomLJsqqAz").chartDatas);
             this.done();
             return false;
         }
