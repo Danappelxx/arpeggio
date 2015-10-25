@@ -18,9 +18,9 @@
                 </button>
 
                 <a class="navbar-brand" href="/">arpegg.io</a>
-                
+
                 <ul class="nav navbar-nav">
-                    
+
                     <li><h5 class="edition">{{#if isStudent}}Student{{else}}Teacher{{/if}} Edition</h5></li>
                 </ul>
             </div>
@@ -39,12 +39,12 @@
             </div><!-- /.navbar-collapse -->
 
         </nav><!-- /navbar -->
-        
+
 
         {{> classModal }}
         <!--{{> assignmentModal }}-->
         {{> formModal }}
-        
+
     </header>
 
 </template>
@@ -59,7 +59,7 @@
 
 <template name="formNav">
     {{#if isTeacher}}
-        <li><a class="add-class-btn" data-toggle="modal" data-target="#modal-create-form" href="#">New Form</a></li>
+        <li><a class="add-form-btn" data-toggle="modal" data-target="#modal-create-form" href="#">New Form</a></li>
     {{/if}}
 </template>
 
@@ -75,22 +75,22 @@
                 <div class="modal-body">
 
                     <div class="input-group">
-                        
+
                         {{#if isStudent}}
 
                             <span class="input-group-addon" id="basic-addon1">Course Code:</span>
                             <input id="course-code-input" type="text" class="form-control" placeholder="ex: 5auYko9NyY3AxcFu3" aria-describedby="basic-addon1">
-                            
+
                         {{else}}
-                        
+
                             <span class="input-group-addon" id="basic-addon2">Course Name:</span>
                             <input type="text" class="course-name-input form-control" placeholder="ex: English Honors" aria-describedby="basic-addon2">
-                            
+
                             <span class="input-group-addon" id="basic-addon3">Period:</span>
                             <input type="text" class="course-period-input form-control" placeholder="ex: 7" aria-describedby="basic-addon3">
-                            
+
                         {{/if}}
-                            
+
                     </div>
 
                 </div>
@@ -105,7 +105,7 @@
 </template>
 
 <template name="formModal">
-    
+
     <div id="modal-create-form" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -116,13 +116,12 @@
                 <div class="modal-body">
 
                     <div class="input-group">
-                        hELLO WORSDLFSDFASD
-                        {{#each components}}
-                            {{label}}
-                            <!--...-->
-                        {{/each}}
+
+                        <!-- {{#each components}} -->
+                            {{> includeComponent}}
+                        <!-- {{/each}} -->
                         <!--{{> quickForm id="types1" schema=}}-->
-                        
+
                         <!--{{> quickForm}}-->
                     </div>
 
@@ -135,4 +134,34 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+</template>
+
+<template name="includeComponent">
+    <div class="todo">
+        <ul>
+          <li class="todo-done">
+            <div class="todo-content">
+              <h4 class="todo-name">
+                Meet <strong>Adrian</strong> at <strong>6pm</strong>
+              </h4>
+            </div>
+          </li>
+          <li>
+            <div class="todo-icon fui-list"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                Chat with <strong>V.Kudinov</strong>
+              </h4>
+            </div>
+          </li>
+          <li>
+            <div class="todo-icon fui-eye"></div>
+            <div class="todo-content">
+              <h4 class="todo-name">
+                Watch <strong>Iron Man</strong>
+              </h4>
+            </div>
+          </li>
+        </ul>
+      </div>
 </template>

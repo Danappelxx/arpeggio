@@ -1,5 +1,6 @@
 /* globals Component SimpleSchema */
 Component = new Mongo.Collection("component");
+
 Component.attachSchema(new SimpleSchema({
     inputType: {
         type: Number,
@@ -14,7 +15,7 @@ Component.attachSchema(new SimpleSchema({
         label: "Graph Type"
     },
     data: {
-        type: Object,
+        type: [Object],
         label: "Component Data",
         optional: true
     },
