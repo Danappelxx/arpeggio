@@ -45,3 +45,19 @@ Template.form.helpers({
         return schema._schemaKeys.length === 0;
     }
 });
+
+AutoForm.hooks({
+    componentForm: {
+        onSubmit: function(insertDoc, updateDoc, currentDoc) {
+            Object.keys(insertDoc).forEach(function(key){
+                let id = Component.findOne({label: key})._id;
+                Response.insert({
+                    componentId: id,
+                    data: insertDoc[key]
+                });
+            });
+            this.done();
+            return false;
+        }
+    }
+});
