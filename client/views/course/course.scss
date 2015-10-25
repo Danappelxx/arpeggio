@@ -5,5 +5,21 @@
 }
 
 #course-teacher {
-   text-align: center; 
+   text-align: center;
+}
+
+#course-code {
+    text-align: center;
+}
+
+li {
+    list-style: none;
+}
+.form-container {
+    margin: 0 auto;
+    width: 50%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 40px;
 }
