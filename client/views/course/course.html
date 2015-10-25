@@ -5,7 +5,8 @@
         <h1 id="course-name">{{name}}</h1>
         <p id="course-teacher">{{teacher}} - Code: <strong>{{courseId}}</strong></p>
 
-        <div id="forms-container">
+        <div id="forms-container" class="col-md-12 col-sm-12">
+            <h5 class="uppercase" id="section-separator">Feedback Forms</h5>
             <ul>
                 {{#each forms}}
                     {{> form}}
@@ -22,7 +23,10 @@
     {{#unless schemaIsEmpty schema}}
         <li>
             <div class="form-container">
-
+                <h4>{{name}}</h4>
+                {{#if isTeacher}}
+                    <a id="statistics-btn" href="/charts/{{_id}}"><i class="fa fa-line-chart"></i> See Statistics</a>
+                {{/if}}
                 {{> quickForm id="componentForm" schema=schema}}
 
             </div>

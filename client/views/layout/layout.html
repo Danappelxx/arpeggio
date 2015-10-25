@@ -99,7 +99,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-default" data-dismiss="modal">Close</a>
+                    <a class="btn btn-default btn-close" data-dismiss="modal">Close</a>
                     <a class="btn btn-primary btn-join" id="modal-create">{{#if isStudent}}Join{{else}}Create{{/if}}</a>
                 </div>
             </div><!-- /.modal-content -->
@@ -120,18 +120,19 @@
                 <div class="modal-body">
 
                     <div class="input-group">
+                        <input type="text" class="form-name-input form-control" placeholder="Form Name">
                         <div class="todo">
                             <ul>
-                              {{#each templateComponents}}
-                                {{> componentTemplate}}
-                              {{/each}}
+                                {{#each templateComponents}}
+                                   {{> componentTemplate}}
+                                {{/each}}
                             </ul>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-default" data-dismiss="modal">Close</a>
+                    <a class="btn btn-default btn-close" data-dismiss="modal">Close</a>
                     <a class="btn btn-primary btn-join create-form-btn">Create</a>
                 </div>
             </div><!-- /.modal-content -->

@@ -115,7 +115,8 @@ Template['main-layout'].events({
             addUserToCourse(Meteor.userId(), courseId);
         }
 
-        $('.add-course-btn').blur();
+        $('.btn-close').click();
+        setTimeout(function(){$(".add-class-btn").blur()}, 1500);
     },
     'click .component-checkbox': function(e) {
         e.preventDefault();
@@ -155,10 +156,12 @@ Template['main-layout'].events({
 
         Form.insert({
             _id: formId,
-            name: "Test",
+            name: $('.form-name-input').val(),
             course: courseId,
             components: rawComponentIds
         });
+        $(".btn-close").click();
+        setTimeout(function(){$(".add-form-btn").blur()}, 1500);
     }
 });
 

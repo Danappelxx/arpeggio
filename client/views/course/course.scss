@@ -2,24 +2,45 @@
 
 #course-name {
     text-align: center;
+    font-size: 36px;
 }
 
 #course-teacher {
    text-align: center;
+   font-size: 18px;
 }
 
-#course-code {
+#section-separator {
     text-align: center;
+    margin-top: 30px;
+    font-size: 20px;
 }
 
-li {
-    list-style: none;
+#statistics-btn {
 }
+
+
+
+
+ul {
+    padding: 0;
+    li {
+        list-style: none;
+    }
+}
+.forms-container {
+    padding: 0;
+}
+
 .form-container {
     margin: 0 auto;
-    width: 50%;
+    max-width: 50%;
     border: 1px solid grey;
     border-radius: 5px;
     padding: 20px;
     margin-top: 40px;
+
+    h4 {
+        word-wrap: break-word;
+    }
 }
