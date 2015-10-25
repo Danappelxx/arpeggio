@@ -7,7 +7,9 @@
         <div id="forms-container">
             <ul>
                 {{#each forms}}
-                    {{> form}}
+                    <li>
+                        {{> form}}
+                    </li>
                 {{/each}}
             </ul>
         </div>
@@ -17,18 +19,11 @@
 </template>
 
 <template name="form">
-    
-    <li>
-        <div class="form-container">
-            
-        </div>
 
-        <h4>{{this.name}}</h4>
-            <ul>
-                {{#each components}}
-                    {{> component}}
-                {{/each}}
-            </ul>
-    </li>
+    <div class="form-container">
+
+        {{> quickForm id="componentForm" schema=schema}}
+
+    </div>
 
 </template>

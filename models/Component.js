@@ -42,7 +42,7 @@ Component.Key = {
         histogram: 2,
         time: 3
     }
-}
+};
 
 
 ComponentConverter = class ComponentConverter {
@@ -60,7 +60,7 @@ ComponentConverter = class ComponentConverter {
             case Component.Key.InputType.text:
                 this.autoform = {
                     afFieldInput: {
-                        type: convertInputType()
+                        type: this.convertInputType()
                     }
                 };
                 break;
@@ -74,7 +74,6 @@ ComponentConverter = class ComponentConverter {
                     }
                 };
                 break;
-            
         }
     }
 
