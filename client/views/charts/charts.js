@@ -1,40 +1,83 @@
-Template.piechart.rendered = function () {
+Template.charts.helpers({
+	render : function(formId) {
+		console.log(formId);
+		var chartDatas = new ResponseProcessor(formId).chartDatas;
+		console.log(chartDatas);
+
+		// get the responses 
+		var chartData = chartDatas[0];
+
+		var component = chartData.component;
+
+		var choices = component.data;
+		var choicesDict = getChoicesDict(choices);
+
+		var responses = chartData.responses;
+		var answersDict = getAnswersDict(responses);
+
+		var dataMatrix = getDataMatrix(choicesDict, answersDict);
+		console.log(dataMatrix);
+		// create pie chart
+		
+		var piechart = c3.generate({
+			bindto: document.querySelector('.piechart'),//this.find('.piechart'),
+			data: {
+				columns: dataMatrix, // load in formatted matrix?
+				type: 'pie'
+			}
+		});
+
+		// this.autorun(function (tracker) {
+		// 	piechart.load({columns: [
+	 //      		Session.get('x'),
+	 //      		Session.get('data1'),
+	 //      		Session.get('data2'),
+	 //      		[]
+	 //    	]});
+	 //  	});
+
+	}
+});
+
+// onRender = () => {
+// // Template.piechart.rendered = function () {
 	
-	var chartDatas = new ResponseProcessor("AAxj8kqqomLJsqqAz").chartDatas;
-	console.log(chartDatas);
+// 	// console.log(this.formId);
+// 	var chartDatas = new ResponseProcessor(this.formId).chartDatas;
+// 	console.log(chartDatas);
 
-	// get the responses 
-	var chartData = chartDatas[0];
+// 	// get the responses 
+// 	var chartData = chartDatas[0];
 
-	var component = chartData.component;
+// 	var component = chartData.component;
 
-	var choices = component.data;
-	var choicesDict = getChoicesDict(choices);
+// 	var choices = component.data;
+// 	var choicesDict = getChoicesDict(choices);
 
-	var responses = chartData.responses;
-	var answersDict = getAnswersDict(responses);
+// 	var responses = chartData.responses;
+// 	var answersDict = getAnswersDict(responses);
 
-	var dataMatrix = getDataMatrix(choicesDict, answersDict);
+// 	var dataMatrix = getDataMatrix(choicesDict, answersDict);
 
-	// create pie chart
-	var piechart = c3.generate({
-		bindto: this.find('.piechart'),
-		data: {
-			columns: dataMatrix, // load in formatted matrix?
-			type: 'pie'
-		}
-	});
+// 	// create pie chart
+// 	var piechart = c3.generate({
+// 		bindto: this.find('.piechart'),
+// 		data: {
+// 			columns: dataMatrix, // load in formatted matrix?
+// 			type: 'pie'
+// 		}
+// 	});
 
-	// this.autorun(function (tracker) {
-	// 	piechart.load({columns: [
- //      		Session.get('x'),
- //      		Session.get('data1'),
- //      		Session.get('data2'),
- //      		[]
- //    	]});
- //  	});
+// 	// this.autorun(function (tracker) {
+// 	// 	piechart.load({columns: [
+//  //      		Session.get('x'),
+//  //      		Session.get('data1'),
+//  //      		Session.get('data2'),
+//  //      		[]
+//  //    	]});
+//  //  	});
 
-}
+// }
 
 // dictionary mapping number value to answer choice string
 var getChoicesDict = function (choices) {

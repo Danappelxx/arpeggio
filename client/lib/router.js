@@ -2,6 +2,8 @@ Router.configure({
   layoutTemplate: 'main-layout'
 });
 
+Router.onBeforeAction('loading');
+
 
 Router.map( function () {
 
@@ -49,17 +51,16 @@ Router.map( function () {
 
 
 	this.route('charts', {
-		path: '/charts',
+		path: '/charts/:formId',
 		template: 'charts',
 
 		waitOn: function () {
 			return Meteor.subscribe('form');
+		},
+		data: function () {
+			// console.log(this.params.formId);
+			return { 'formId' : this.params.formId };
 		}
-		// data: function () {
-		// 	return {
-		// 		// form id
-		// 	}
-		// }
 	})
 });
 

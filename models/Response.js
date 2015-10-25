@@ -25,7 +25,7 @@ ChartData = class ChartData {
 
 ResponseProcessor = class ResponseProcessor {
     constructor(formId) {
-
+        // console.log(formId);
         var form = Form.findOne(formId);
         var componentIds = form.components;
 
